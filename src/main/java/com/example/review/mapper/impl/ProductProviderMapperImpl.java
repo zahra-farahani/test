@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ProductProviderMapperImpl implements ProductProviderMapper {
-    private final ProviderMapper providerMapper;
-    @Override
-    public ProductDTO toProductDTO(ProductProvider productProvider) {
-        ProductDTO dto = new ProductDTO();
-        dto.setId(productProvider.getProduct().getId());
-        dto.setName(productProvider.getProduct().getName());
-        dto.setDescription(productProvider.getProduct().getDescription());
-        dto.setProvider(providerMapper.toProviderDTO(productProvider.getProvider()));
-    }
+//    private final ProviderMapper providerMapper;
+//    @Override
+//    public ProductDTO toProductDTO(ProductProvider productProvider) {
+//        ProductDTO dto = new ProductDTO();
+//        dto.setId(productProvider.getProduct().getId());
+//        dto.setName(productProvider.getProduct().getName());
+//        dto.setDescription(productProvider.getProduct().getDescription());
+//        dto.setProvider(providerMapper.toProviderDTO(productProvider.getProvider()));
+//    }
 }

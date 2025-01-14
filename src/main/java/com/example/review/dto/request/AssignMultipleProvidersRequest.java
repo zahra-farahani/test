@@ -8,9 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CreateProductRequest {
-    @NotNull(message = "'name' cannot be null")
-    private String name;
-    private String description;
+public class AssignMultipleProvidersRequest {
+    @NotNull(message = "'provider' can't be null")
     private List<AssignProviderRequest> providers;
 }

@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateProviderRequest {
-    @NotNull
+    @NotNull(message = "'name' cannot be null")
     private String name;
 }

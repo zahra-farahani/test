@@ -13,7 +13,7 @@ public class ProductDTO {
     private Long id;
     private String name;
     private String description;
-    private List<ProviderDTO> provider;
+    private List<ProviderDTO> providers;
     private List<ReviewDTO> reviews;
     private Float avgRating;
 }

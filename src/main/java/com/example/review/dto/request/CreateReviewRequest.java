@@ -9,19 +9,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateReviewRequest {
-    @NotNull
+    @NotNull(message = "'userId' cannot be null")
     private Long userId;
 
-    @NotNull
+    @NotNull(message = "'productId' cannot be null")
     private Long productId;
 
-    @NotNull
+    @NotNull(message = "'providerId' cannot be null")
     private Long providerId;
 
-    @Min(0)
-    @Max(5)
+    @Min(value = 0, message = "minimum value for 'rating' is 0")
+    @Max(value = 5, message = "maximum value for 'rating' is 5")
     private Integer rating;
 
-    @NotNull
+    @NotNull(message = "'comment' cannot be null")
     private String comment;
 }

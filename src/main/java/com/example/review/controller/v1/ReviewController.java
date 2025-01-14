@@ -24,7 +24,7 @@ public class ReviewController {
     @PatchMapping("/{reviewId}")
     public ResponseEntity<Void> updateReviewStatus(@PathVariable Long reviewId,
                                                    @Valid @RequestBody UpdateReviewStatusRequest request) {
-        reviewService.updateReviewStatus(reviewId, request.getReviewStatus());
+        reviewService.updateReviewStatus(reviewId, request.getStatus());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

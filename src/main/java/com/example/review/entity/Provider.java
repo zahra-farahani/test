@@ -1,18 +1,23 @@
 package com.example.review.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Set;
 
 @Setter
 @Getter
-@ToString
+@NoArgsConstructor
 @Entity
 @Table(name = "providers")
 public class Provider extends BaseEntity<Long> {
+    public Provider(Long id) {
+        super(id);
+    }
+
     @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "provider", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductProvider> productProviders;
 }

@@ -2,16 +2,17 @@ package com.example.review.entity;
 
 import com.example.review.enumeration.ReviewVisibility;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @IdClass(ProductProviderId.class)
 @Table(name = "product_provider")
 public class ProductProvider {
-
     @Id
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)

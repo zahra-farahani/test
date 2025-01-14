@@ -1,6 +1,9 @@
 package com.example.review.controller.v1;
 
+import com.example.review.dto.request.AssignMultipleProvidersRequest;
+import com.example.review.dto.request.AssignProviderRequest;
 import com.example.review.dto.request.CreateProductRequest;
+import com.example.review.dto.request.CreateProviderRequest;
 import com.example.review.dto.response.BaseResponse;
 import com.example.review.dto.response.ProductWithProviderResponse;
 import com.example.review.service.ProductService;
@@ -31,5 +34,11 @@ public class ProductController {
     @GetMapping("/{productId}/{providerId}")
     public ResponseEntity<ProductWithProviderResponse> getProductDetails(@PathVariable Long productId, @PathVariable Long providerId) {
         return new ResponseEntity<>(productService.getProductDetails(productId, providerId), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{productId}")
+    public ResponseEntity<Void> assignProvidersToProduct(@Valid @RequestBody AssignMultipleProvidersRequest request) {
+        productService.assignProvidersToExistingProduct(request.getProviders());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

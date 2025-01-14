@@ -3,11 +3,10 @@ package com.example.review.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+import java.util.Set;
 
 @Setter
 @Getter
-@ToString
 @Entity
 @Table(name = "products")
 public class Product extends BaseEntity<Long> {
@@ -17,4 +16,7 @@ public class Product extends BaseEntity<Long> {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductProvider> productProviders;
 }

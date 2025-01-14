@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateReviewStatusRequest {
-    @NotNull
-    private ReviewStatus reviewStatus;
+    @NotNull(message = "'status' cannot be null")
+    private ReviewStatus status;
 }

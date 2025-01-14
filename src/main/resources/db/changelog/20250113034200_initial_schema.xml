@@ -11,7 +11,7 @@
                 <tableExists tableName="products"/>
             </not>
         </preConditions>
-        <createTable tableName="product">
+        <createTable tableName="products">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_products_table_id" nullable="false"/>
             </column>
@@ -66,7 +66,7 @@
                 <tableExists tableName="reviews"/>
             </not>
         </preConditions>
-        <createTable tableName="review">
+        <createTable tableName="reviews">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_reviews_table_id" nullable="false"/>
             </column>
