@@ -4,13 +4,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class CreateProductRequest {
+public class CreateUserRequest {
     @NotNull(message = "'name' cannot be null")
     private String name;
-    private String description;
-    private List<ProductProviderRequest> providers;
+    @NotNull(message = "'email' cannot be null")
+    private String email;
 }

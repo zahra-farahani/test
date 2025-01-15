@@ -1,8 +1,10 @@
 package com.example.review.mapper;
 
-import com.example.review.dto.ProductDTO;
+
+import com.example.review.dto.request.ProductProviderRequest;
+import com.example.review.entity.Product;
 import com.example.review.entity.ProductProvider;
 
 public interface ProductProviderMapper {
-   // ProductDTO toProductDTO(ProductProvider productProvider);
+    ProductProvider toEntity(Product product, ProductProviderRequest request);
 }

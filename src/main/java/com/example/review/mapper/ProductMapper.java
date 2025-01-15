@@ -7,5 +7,7 @@ import com.example.review.entity.Product;
 public interface ProductMapper {
     Product toEntity(ProductDTO productDTO);
 
+    ProductDTO toDTO(Product product);
+
     Product toEntity(CreateProductRequest productRequest);
 }

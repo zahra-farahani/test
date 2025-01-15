@@ -17,6 +17,6 @@ public class Product extends BaseEntity<Long> {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<ProductProvider> productProviders;
 }

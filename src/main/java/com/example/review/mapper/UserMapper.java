@@ -1,6 +1,7 @@
 package com.example.review.mapper;
 
 import com.example.review.dto.UserDTO;
+import com.example.review.dto.request.CreateUserRequest;
 import com.example.review.entity.User;
 import org.mapstruct.Mapper;
 
@@ -9,4 +10,5 @@ public interface UserMapper {
     UserDTO toUserDTO(User user);
 
     User toUserEntity(UserDTO userDTO);
+    User toUserEntity(CreateUserRequest request);
 }

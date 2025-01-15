@@ -10,10 +10,7 @@ import lombok.ToString;
 @ToString
 public class ReviewDTO {
     private Long id;
-    private ProductDTO product;
-    private ProviderDTO provider;
-    private UserDTO user;
+    private String userName;
     private String comment;
     private Integer rating;
-    private ReviewStatus status;
 }

@@ -15,5 +15,6 @@ public class ProductDTO {
     private String description;
     private List<ProviderDTO> providers;
     private List<ReviewDTO> reviews;
-    private Float avgRating;
+    private Double avgRating;
+    private Long totalReviews;
 }

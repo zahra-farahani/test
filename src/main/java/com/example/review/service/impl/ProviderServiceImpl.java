@@ -25,9 +25,7 @@ public class ProviderServiceImpl implements ProviderService {
     }
 
     @Override
-    public Provider fetchProvider(Long id) {
+    public Provider fetchProviderById(Long id) {
         return Optional.of(providerRepository.findById(id)).get().orElseThrow(ProviderNotFoundException::new);
     }
-
-
 }

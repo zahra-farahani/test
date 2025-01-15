@@ -7,9 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AssignProviderRequest {
+public class ProductProviderRequest {
     @NotNull(message = "provider's id cannot be null")
-    private Long id;
+    private Long providerId;
     @NotNull(message = "provider's price cannot be null")
     private Double price;
     @NotNull(message = "provider's isCommentEnabled cannot be null")

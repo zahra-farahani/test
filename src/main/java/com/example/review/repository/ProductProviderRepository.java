@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductProviderRepository extends JpaRepository<ProductProvider, Long> {
-    //Optional<ProductProvider> findById_ProductIdAndId_ProviderId(Long productId, Long providerId);
 }

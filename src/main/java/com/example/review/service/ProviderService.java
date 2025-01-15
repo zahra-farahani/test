@@ -6,5 +6,5 @@ import com.example.review.entity.Provider;
 
 public interface ProviderService {
     BaseResponse addProvider(CreateProviderRequest request);
-    Provider fetchProvider(Long id);
+    Provider fetchProviderById(Long id);
 }

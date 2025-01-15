@@ -1,32 +1,31 @@
 package com.example.review.service.impl;
 
 import com.example.review.dto.ProductDTO;
-import com.example.review.dto.request.AssignProviderRequest;
+import com.example.review.dto.ReviewStatsDTO;
 import com.example.review.dto.request.CreateProductRequest;
 import com.example.review.dto.response.BaseResponse;
-import com.example.review.dto.response.ProductWithProviderResponse;
 import com.example.review.entity.Product;
-import com.example.review.entity.ProductProvider;
+import com.example.review.exception.ProductNotFoundException;
 import com.example.review.mapper.ProductMapper;
-import com.example.review.mapper.ProviderMapper;
-import com.example.review.repository.ProductProviderRepository;
+import com.example.review.mapper.ReviewMapper;
 import com.example.review.repository.ProductRepository;
+import com.example.review.repository.ReviewRepository;
 import com.example.review.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
-    private final ProductProviderRepository productProviderRepository;
     private final ProductMapper productMapper;
-    private final ProviderMapper providerMapper;
+    private final ReviewRepository reviewRepository;
+    private final ReviewMapper reviewMapper;
 
     @Transactional
     @Override
@@ -36,31 +35,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductWithProviderResponse> getAllProducts() {
-        List<ProductProvider> all = productProviderRepository.findAll();
-        List<ProductDTO> products = new ArrayList<>();
-        all.stream().collect(Collectors.groupingBy(ProductProvider::getProduct)).forEach((k , v) -> {
-            ProductDTO product = new ProductDTO();
-            product.setId(k.getId());
-            product.setName(k.getName());
-            product.setDescription(k.getDescription());
-            product.setProviders(v.stream()
-                    .map(ProductProvider::getProvider)
-                    .distinct()
-                    .map(providerMapper::toDTO)
-                    .toList());
+    public List<ProductDTO> getAllProducts(Pageable pageable) {
+        List<ProductDTO> productDTOS = productRepository.findProductsWithDetails(pageable).map(productMapper::toDTO).toList();
+        productDTOS.forEach(p -> {
+            ReviewStatsDTO stats = reviewRepository.findReviewStatsByProductId(p.getId());
+            p.setAvgRating(stats.getAverageRating());
+            p.setTotalReviews(stats.getTotalReviews());
 
+            if (stats.getTotalReviews() > 0) {
+                p.setReviews(reviewRepository.findLastThreeReviewsByProductId(p.getId()).stream().map(reviewMapper::toReviewDTO).toList());
+            }
         });
-        return null;
+        return productDTOS;
     }
 
     @Override
-    public ProductWithProviderResponse getProductDetails(Long productId, Long providerId) {
-        return null;
-    }
-
-    @Override
-    public void assignProvidersToExistingProduct(List<AssignProviderRequest> providers) {
-
+    public Product fetchProductById(Long id) {
+        return Optional.of(productRepository.findById(id)).get().orElseThrow(ProductNotFoundException::new);
     }
 }

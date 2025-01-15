@@ -10,5 +10,5 @@ import java.util.List;
 @Setter
 public class AssignMultipleProvidersRequest {
     @NotNull(message = "'provider' can't be null")
-    private List<AssignProviderRequest> providers;
+    private List<ProductProviderRequest> providers;
 }

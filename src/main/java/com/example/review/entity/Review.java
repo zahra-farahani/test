@@ -8,16 +8,15 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
 @Entity
 @Table(name = "reviews")
 public class Review extends BaseEntity<Long> {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "provider_id", nullable = false)
     private Provider provider;
 
