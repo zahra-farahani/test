@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "353807ac-eb2b-4c19-93af-f78453ef5de7",
+		"name": "review",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9132174"
+	},
+	"item": [
+		{
+			"name": "add product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" :\"test1002\",\n    \"decription\":\"ttttt\",\n    \"providers\" : [\n        {\n            \"id\":1,\n            \"price\":2000,\n            \"isCommentEnabled\":true,\n            \"isRatingEnabled\":true,\n            \"reviewVisibility\":\"PUBLIC\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add provider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"test2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/providers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"providers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assign existing providers to an existing product",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"providers\" : [\n        {\n            \"providerId\":1,\n            \"price\":2000,\n            \"isCommentEnabled\":true,\n            \"isRatingEnabled\":true,\n            \"reviewVisibility\":\"BUYER_ONLY\"\n        },\n        {\n            \"providerId\":2,\n            \"price\":6000,\n            \"isCommentEnabled\":false,\n            \"isRatingEnabled\":true,\n            \"reviewVisibility\":\"PUBLIC\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/products/1/assignProvider",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"products",
+						"1",
+						"assignProvider"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"maede\",\n    \"email\":\"maede@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add review",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 1,\n    \"productId\": 2,\n    \"providerId\":1,\n    \"rating\":3,\n    \"comment\":\"testttt\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "approve review",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\" : \"APPROVED\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/reviews/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"reviews",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reject review",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\" : \"REJECTED\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/reviews/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"reviews",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all products",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
